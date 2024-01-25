@@ -5,7 +5,7 @@ using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using UnityEngine.InputSystem; //Figure out how to use NEW input system
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.SearchService;
 
@@ -23,13 +23,13 @@ public class NovelManager : MonoBehaviour
 
     [SerializeField] private GameObject bgPanel;
     [SerializeField] private GameObject[] choices;
-    [SerializeField] private GameObject startPanel; //Change to skip panel/skip buttons?
+    [SerializeField] private GameObject startPanel;
     [SerializeField] private GameObject startButton;
 
     private Story currentStory; //The Story object used to advance each line
 
     public TextAsset dialogueScript; //This is where the JSON file goes
-    InputAction submitAction; //This is controlling the user's action to select choices/advance dialogue
+    public InputAction submitAction; //This is controlling the user's action to select choices/advance dialogue
 
 
     //Current state
@@ -51,10 +51,9 @@ public class NovelManager : MonoBehaviour
     private void Start()
     {
         dialogueIsPlaying = false;
-        startPanel.SetActive(false);
+        startPanel.SetActive(true);
         StartCoroutine(SelectStart());
-        //AudioManager.GetInstance().SwitchTheme("BGM tbd later");
-        //StartDialogue(dialogueScript);
+        AudioManager.GetInstance().SwitchTheme("Medieval_Loop");
 
         foreach (GameObject button in choices)
         {
@@ -79,7 +78,7 @@ public class NovelManager : MonoBehaviour
     public void StartDialogue(TextAsset inkJSON)
     {
         startPanel.SetActive(false);
-        //AudioManager.GetInstance().SwitchTheme(" ");
+        AudioManager.GetInstance().SwitchTheme(" ");
 
         currentStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
@@ -132,7 +131,7 @@ public class NovelManager : MonoBehaviour
             }
 
             dialogueText.maxVisibleCharacters++;
-            //AudioManager.GetInstance().PlaySound("Text_Scroll");
+            AudioManager.GetInstance().PlaySound("Text_Scroll");
             yield return new WaitForSeconds(0.03f);
         }
         DisplayChoices();
@@ -157,7 +156,7 @@ public class NovelManager : MonoBehaviour
             switch (tagKey)
             {
                 case "speaker":
-                    nameText.text = (tagValue == "NONE") ? " " : tagValue + ';';
+                    nameText.text = (tagValue == "NONE") ? " " : tagValue + ':';
                     break;
             }
         }
@@ -213,12 +212,12 @@ public class NovelManager : MonoBehaviour
     private void OnEnable()
     {
         submitAction.Enable();
-        submitAction.started += OnSubmit();
+        submitAction.started += OnSubmit;
     }
 
     private void OnDisable()
     {
-        submitAction.started -= OnSubmit();
+        submitAction.started -= OnSubmit;
         submitAction.Disable();
     }
 
