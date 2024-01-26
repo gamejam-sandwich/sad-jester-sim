@@ -88,7 +88,7 @@ public class NovelManager : MonoBehaviour
     void EndDialogue()
     {
         dialogueIsPlaying = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Jester Room");
     }
 
     public void ContinueStory()
@@ -129,7 +129,7 @@ public class NovelManager : MonoBehaviour
             }
 
             dialogueText.maxVisibleCharacters++;
-            AudioManager.GetInstance().PlaySound("Text_Scroll");
+            AudioManager.GetInstance().PlaySound("Text");
             yield return new WaitForSeconds(0.03f);
         }
         DisplayChoices();
@@ -159,11 +159,11 @@ public class NovelManager : MonoBehaviour
                 case "switchTheme":
                     AudioManager.GetInstance().SwitchTheme(tagValue);
                     break;
-                case "splash":
-                    ImageManager.GetInstance().SetSplash(tagValue);
-                    break;
                 case "playSound":
                     AudioManager.GetInstance().PlaySound(tagValue);
+                    break;
+                case "splash":
+                    ImageManager.GetInstance().SetSplash(tagValue);
                     break;
             }
         }

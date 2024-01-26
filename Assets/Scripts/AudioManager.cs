@@ -44,6 +44,7 @@ public class AudioManager : MonoBehaviour
             if (s.name == desiredSoundName)
             {
                 s.source.Play();
+                break;
             }
         }
     }
