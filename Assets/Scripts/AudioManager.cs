@@ -52,12 +52,15 @@ public class AudioManager : MonoBehaviour
     {
         foreach(Sound s in soundArray)
         {
-            if (!s.source.isPlaying)
+            if(s.name == desiredSoundName)
             {
-                Debug.LogWarning("Not playing");
-                return;
+                if (!s.source.isPlaying)
+                {
+                    Debug.LogWarning("Not playing");
+                    return;
+                }
+                s.source.Stop();
             }
-            s.source.Stop();
         }
     }
 

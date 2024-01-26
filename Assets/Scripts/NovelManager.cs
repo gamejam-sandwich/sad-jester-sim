@@ -53,7 +53,6 @@ public class NovelManager : MonoBehaviour
         dialogueIsPlaying = false;
         startPanel.SetActive(true);
         StartCoroutine(SelectStart());
-        AudioManager.GetInstance().SwitchTheme("Medieval_Loop");
 
         foreach (GameObject button in choices)
         {
@@ -90,7 +89,6 @@ public class NovelManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        //dialogueText.text = "";
     }
 
     public void ContinueStory()
@@ -157,6 +155,15 @@ public class NovelManager : MonoBehaviour
             {
                 case "speaker":
                     nameText.text = (tagValue == "NONE") ? " " : tagValue + ':';
+                    break;
+                case "switchTheme":
+                    AudioManager.GetInstance().SwitchTheme(tagValue);
+                    break;
+                case "splash":
+                    ImageManager.GetInstance().SetSplash(tagValue);
+                    break;
+                case "playSound":
+                    AudioManager.GetInstance().PlaySound(tagValue);
                     break;
             }
         }
