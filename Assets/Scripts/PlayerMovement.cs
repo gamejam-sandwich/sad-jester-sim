@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector2 smoothedMvmt;
     private Vector2 smoothedVelocity;
     private Animator animator;
+    private AudioSource auso;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        auso = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -46,10 +48,12 @@ public class PlayerMovement : MonoBehaviour
             animator.SetFloat("X", mvmtInput.x);
             animator.SetFloat("Y", mvmtInput.y);
 
+            auso.Play();
             animator.SetBool("isWalking", true);
         }
         else
         {
+            auso.Stop();
             animator.SetBool("isWalking", false);
         }
     }
