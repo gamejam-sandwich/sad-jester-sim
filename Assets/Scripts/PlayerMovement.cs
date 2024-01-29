@@ -23,14 +23,6 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         SetPlayerVelocity();
-        SetAnimation();
-    }
-
-    private void SetAnimation()
-    {
-        bool isWalking = mvmtInput != Vector2.zero;
-
-        animator.SetBool("isWalking", isWalking);
     }
 
     private void SetPlayerVelocity()
@@ -48,5 +40,17 @@ public class PlayerMovement : MonoBehaviour
     private void OnMove(InputValue inputValue)
     {
         mvmtInput = inputValue.Get<Vector2>();
+
+        if (mvmtInput.x != 0 || mvmtInput.y != 0)
+        {
+            animator.SetFloat("X", mvmtInput.x);
+            animator.SetFloat("Y", mvmtInput.y);
+
+            animator.SetBool("isWalking", true);
+        }
+        else
+        {
+            animator.SetBool("isWalking", false);
+        }
     }
 }
