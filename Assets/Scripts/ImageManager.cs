@@ -30,10 +30,6 @@ public class ImageManager : MonoBehaviour
         return instance;
     }
 
-    public void SetExpression(string charName, string imageName)
-    {
-
-    }
 
     public void SetSplash(string imageFileName)
     {

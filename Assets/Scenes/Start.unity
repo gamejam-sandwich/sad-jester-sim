@@ -334,6 +334,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: Sparkle
+    clip: {fileID: 8300000, guid: 5da152408a685784e8ba24cf45a5d7eb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &112586404
 GameObject:
   m_ObjectHideFlags: 0

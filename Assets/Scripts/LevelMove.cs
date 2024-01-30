@@ -11,17 +11,10 @@ public class LevelMove : MonoBehaviour
         {
             SceneManager.LoadScene("Maze");
         }
-        else if (col.gameObject.tag == "c")
-        {
-            SceneManager.LoadScene("End");
-        }
-        else if (col.gameObject.tag == "w")
-        {
-            SceneManager.LoadScene("End");
-        }
-        else if (col.gameObject.tag == "r")
-        {
-            SceneManager.LoadScene("End");
-        }
+    }
+
+    public void ChangeLvl(string name)
+    {
+        SceneManager.LoadScene(name);
     }
 }
