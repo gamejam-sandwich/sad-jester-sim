@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Jester Room.unity
     guid: 923b9bc739af3a34b93d397046066a8f
+  - enabled: 1
+    path: Assets/Scenes/Maze.unity
+    guid: 6249c137c013c934e822464b399f9f23
+  - enabled: 1
+    path: Assets/Scenes/End.unity
+    guid: 11851c2fd5e517641a50cd0268af8e7a
   m_configObjects: {}
